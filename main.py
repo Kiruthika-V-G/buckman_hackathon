@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 
 df = pd.read_csv('sample.csv')
 
-# Task 1: Analyze demographic distribution
+
 
 # Gender distribution
 plt.figure(figsize=(8, 6))
@@ -22,7 +22,7 @@ plt.xlabel('Gender')
 plt.ylabel('Count')
 plt.show()
 
-# Marital status distribution
+
 plt.figure(figsize=(8, 6))
 sns.countplot(x='Marital Status', data=df)
 plt.title('Marital Status Distribution')
@@ -30,7 +30,7 @@ plt.xlabel('Marital Status')
 plt.ylabel('Count')
 plt.show()
 
-# Age distribution
+
 plt.figure(figsize=(10, 6))
 sns.histplot(df['Age'], bins=20, kde=True)
 plt.title('Age Distribution')
@@ -39,7 +39,6 @@ plt.ylabel('Frequency')
 plt.show()
 
 
-# Employment roles
 plt.figure(figsize=(10, 6))
 sns.countplot(y='Role', data=df, order=df['Role'].value_counts().index)
 plt.title('Employment Roles Distribution')
@@ -132,11 +131,11 @@ plt.show()
 
 
 
-# Display the first few rows of the dataset
+
 print("First few rows of the dataset:")
 print(df.head())
 
-# Summary statistics of numerical variables
+
 print("\nSummary statistics of numerical variables:")
 print(df.describe())
 
@@ -151,16 +150,11 @@ plt.title('Correlation Matrix')
 plt.show()
 
 
-
-
-# Load the dataset
 df = pd.read_csv('/content/drive/MyDrive/buckman/sample.csv')
 
-# Perform data cleaning tasks
 df = df.dropna()
 df = df.drop_duplicates()
 
-# Define the parse_percent function
 def parse_percent(percent_str):
     if percent_str == "Don't Want to Reveal":
         return 10
@@ -189,11 +183,9 @@ for col in df.columns:
     if df[col].dtype == 'object':
         df[col] = le.fit_transform(df[col])
 
-# Split the dataset into features and target variable
 X = df.drop(columns=['Return Earned'])
 y = df['Return Earned']
 
-# Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Standardize the numerical features
@@ -205,8 +197,7 @@ clf = RandomForestClassifier(n_estimators=100, max_depth=3, random_state=42)
 # Train the random forest classifier on the training set
 clf.fit(X_train_scaled, y_train)
 
-# Evaluate the performance of the recommendation system using appropriate metrics
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
 
 y_pred = clf.predict(X_test_scaled)
 accuracy = accuracy_score(y_test, y_pred)
